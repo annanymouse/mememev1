@@ -17,6 +17,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     //var activeField: UITextField?
     
@@ -43,7 +44,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         bottomText.delegate = self
         
         shareButton.enabled = false
-        view.backgroundColor = UIColor.lightGrayColor()
+        //view.backgroundColor = UIColor.lightGrayColor()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -72,6 +73,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
    
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func cancelButton(sender: UIBarButtonItem) {
+        imagePickerControllerDidCancel(imagePicker)
     }
     
     @IBAction func pickAnImageFromAlbum (sender: AnyObject) {

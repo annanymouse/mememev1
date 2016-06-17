@@ -18,12 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sf4-1z-mXD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sf4-1z-mXD">
                                 <rect key="frame" x="10" y="77" width="394" height="600"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lpD-x9-k0U">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lpD-x9-k0U">
                                 <rect key="frame" x="184" y="107" width="25" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mxX-LT-eQg">
+                                <rect key="frame" x="195" y="613" width="25" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
@@ -47,13 +52,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mxX-LT-eQg">
-                                <rect key="frame" x="195" y="613" width="25" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                            </textField>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Sf4-1z-mXD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="13" id="0xM-bu-75f"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6xz-hd-WA0" secondAttribute="trailing" constant="-20" id="8kK-dj-jLg"/>
@@ -74,12 +74,17 @@
                                 <action selector="shareButton:" destination="BYZ-38-t0r" id="5Zc-U9-g0Y"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="5wU-Mm-Hlb"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="5wU-Mm-Hlb">
+                            <connections>
+                                <action selector="cancelButton:" destination="BYZ-38-t0r" id="xPf-K2-McO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="bottomText" destination="mxX-LT-eQg" id="cC1-eq-iCg"/>
                         <outlet property="cameraButton" destination="c4q-ms-Hsw" id="aci-7H-oS1"/>
+                        <outlet property="cancelButton" destination="5wU-Mm-Hlb" id="jlB-sP-9f3"/>
                         <outlet property="imagePickerView" destination="Sf4-1z-mXD" id="qCS-MY-VWA"/>
                         <outlet property="shareButton" destination="bhk-zn-IMq" id="x9C-5b-AMe"/>
                         <outlet property="topText" destination="lpD-x9-k0U" id="1L1-nH-Sh6"/>
