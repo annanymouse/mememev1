@@ -15,3 +15,14 @@ public struct Meme {
     var originalImage:UIImage?
     var memedImage:UIImage!
 }
+
+//import UIKit
+//
+//struct Meme {
+//    
+//    var topText: String!
+//    var bottomText: String!
+//    var image: UIImage!
+//    var memeImage: UIImage!
+//    
+//}
