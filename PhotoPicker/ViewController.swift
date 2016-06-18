@@ -18,14 +18,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var toolBar: UIToolbar!
-    @IBOutlet weak var navBar: UINavigationItem!
+    //@IBOutlet weak var navBar: UINavigationItem!
     
-    //var activeField: UITextField?
-    
-//    func hideToolBars(flag:Bool){
-//        navBar.hidden = flag
-//        toolbar.hidden = flag
-//    }
+    var activeField: UITextField?
     
     //inspired by https://github.com/Roselai/MemeMe1.0/tree/master/memeMe1.0
     func setupTextField(textField: UITextField) {
@@ -41,14 +36,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         textField.textAlignment = .Center
     }
     
+    func save() {
+        // Create the meme
+        let memedImage = generateMemedImage()
+        let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imagePickerView.image!, memedImage: imagePickerView.image!)
+    }
+    
+    //inspired by https://github.com/sultana-reshma/MemeMe
+    // Show/Hide the tool bar and Navigation bar
+    func hideToolBar(disabled:Bool){
+        toolBar.hidden = disabled
+        navigationController?.setNavigationBarHidden(disabled, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         setupTextField(topText)
         setupTextField(bottomText)
-        topText.text = "TOP"
-        bottomText.text = "BOTTOM"
+        //topText.text = "TOP"
+        //bottomText.text = "BOTTOM"
         
         shareButton.enabled = false
         view.backgroundColor = UIColor.lightGrayColor()
@@ -65,11 +73,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         unsubscribeFromKeyboardNotifications()
     }
     
-    //inspired by https://github.com/Roselai/MemeMe1.0/tree/master/memeMe1.0
+    //inspired by https://github.com/Roselai/MemeMe1.0
     func pickAnImage (source: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = source
+        
+        if(source == .Camera){
+            imagePicker.cameraCaptureMode = .Photo
+        }
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
@@ -80,15 +92,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     @IBAction func pickAnImageFromCamera(sender: AnyObject) {
         pickAnImage(.Camera)
     }
-
-//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-//        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-//            imagePickerView.contentMode = .ScaleAspectFit
-//            imagePickerView.image = image
-//        }
-//        dismissViewControllerAnimated(true, completion: nil)
-//        shareButton.enabled = true
-//    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -105,23 +108,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     
     @IBAction func cancelButton(sender: UIBarButtonItem) {
         imagePickerView.image = nil
-        topText.text = "TOP"
-        bottomText.text = "BOTTOM"
+        topText.placeholder = "TOP"
+        bottomText.placeholder = "BOTTOM"
         shareButton.enabled = false
     }
     
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeFromKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-        //NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        //NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
@@ -130,31 +129,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         return keyboardSize.CGRectValue().height
     }
     
-    func keyboardWillShow(notification: NSNotification) {
-        if bottomText.isFirstResponder(){
-            view.frame.origin.y -= getKeyboardHeight(notification);
-        }
-        else if topText.isFirstResponder(){
-            view.frame.origin.y = 0;
-        }
-    }
-    
     func keyboardWillHide(notification: NSNotification) {
         //UIKeyboardWillHideNotification
         //view.frame.origin.y += getKeyboardHeight(notification)
         view.frame.origin.y = 0
     }
-    
-    
+   
     @IBAction func shareButton(sender: UIBarButtonItem) {
-        let image = UIImage()
-        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        let image = [generateMemedImage()]
+        let controller = UIActivityViewController(activityItems: image, applicationActivities: nil)
         self.presentViewController(controller, animated: true, completion: nil)
-
+        self.save()
     }
     
-    // when editing begins the default text is cleared
-    //inspired by code from https://github.com/jhyqt5/mememe/blob/master/MemeApp
     func textFieldDidBeginEditing(textField: UITextField) {
         if textField.tag == 0 {
             topText.placeholder = ""
@@ -164,37 +151,35 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         }
     }
     
-    @IBAction func topText(sender: UITextField) {
-        textFieldDidBeginEditing(topText)
-    }
-    
-    
-    @IBAction func bottomText(sender: UITextField) {
-        textFieldDidBeginEditing(bottomText)
-    }
-    
-    //https://github.com/jhyqt5/mememe/blob/master/MemeApp
     func textFieldDidEndEditing(textField: UITextField) {
         if textField.tag == 1 {
             NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         }
     }
     
-//    func textFieldDidBeginEditing(textField: UITextField) {
-//        textField.text = ""
-//    }
-    
-    // closes keyboard when return is pressed
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return true;
+        keyboardDisappears()
+        return true
     }
     
-    func generateMemedImage() -> UIImage
-    {
+    func dismissKeyboard () {
+        view.endEditing(true)
+        keyboardDisappears ()
+    }
     
-     self.navigationController!.navigationBar.hidden = true
-     navigationController?.setToolbarHidden(false, animated: false)
+    func keyboardWillShow(notification: NSNotification) {
+        imagePickerView.frame.origin.y = imagePickerView.frame.origin.y - getKeyboardHeight(notification)
+    }
+    
+    func keyboardDisappears () {
+        imagePickerView.frame.origin.y = 0
+    }
+    
+    func generateMemedImage() -> UIImage {
+    
+     // hide toolbar
+     hideToolBar(true)
         
     // Render view to an image
     UIGraphicsBeginImageContext(self.view.frame.size)
@@ -207,14 +192,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     self.navigationController!.navigationBar.hidden = false
     navigationController?.setToolbarHidden(true, animated: false)
     
+    // show toolbar
+    hideToolBar(false)
+    
     return memedImage
     }
 
-    func save() {
-        //Create the meme
-        let memedImage = generateMemedImage()
-        let meme = Meme(topText: topText.text, bottomText: bottomText.text, originalImage: imagePickerView.image, memedImage: memedImage)
-    }
-    
 }
-

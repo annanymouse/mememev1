@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="B3H-rg-qam">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="afQ-ko-Uls">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--ViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PhotoPicker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" title="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="PhotoPicker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -19,26 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sf4-1z-mXD">
-                                <rect key="frame" x="10" y="77" width="394" height="600"/>
+                                <rect key="frame" x="10" y="64" width="394" height="613"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lpD-x9-k0U">
-                                <rect key="frame" x="184" y="107" width="25" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lpD-x9-k0U">
+                                <rect key="frame" x="107" y="91" width="200" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <connections>
-                                    <action selector="topText:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="isX-2v-Bg5"/>
-                                    <action selector="topText:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="wi6-g0-Iwm"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mxX-LT-eQg">
-                                <rect key="frame" x="195" y="613" width="25" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <connections>
-                                    <action selector="bottomText:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="IGj-Rx-kHu"/>
-                                    <action selector="bottomText:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="cvh-WB-OgO"/>
-                                </connections>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xz-hd-WA0">
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
@@ -55,11 +42,16 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mxX-LT-eQg">
+                                <rect key="frame" x="107" y="611" width="200" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Sf4-1z-mXD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="13" id="0xM-bu-75f"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6xz-hd-WA0" secondAttribute="trailing" constant="-20" id="8kK-dj-jLg"/>
+                            <constraint firstItem="Sf4-1z-mXD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="94L-53-HoH"/>
                             <constraint firstItem="lpD-x9-k0U" firstAttribute="centerX" secondItem="Sf4-1z-mXD" secondAttribute="centerX" constant="-10.5" id="DmZ-er-jTS"/>
                             <constraint firstItem="6xz-hd-WA0" firstAttribute="top" secondItem="Sf4-1z-mXD" secondAttribute="bottom" constant="15" id="EWj-yT-PY1"/>
                             <constraint firstItem="lpD-x9-k0U" firstAttribute="top" secondItem="Sf4-1z-mXD" secondAttribute="top" constant="30" id="IpW-Pu-vHd"/>
@@ -71,15 +63,15 @@
                             <constraint firstItem="mxX-LT-eQg" firstAttribute="bottom" secondItem="Sf4-1z-mXD" secondAttribute="bottom" constant="-34" id="uyB-3a-H4Z"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="UZY-2Z-5vW">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="bhk-zn-IMq">
+                    <navigationItem key="navigationItem" title="Meme Me 1.0" id="u8p-Fp-jlZ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="aNd-by-Kq8">
                             <connections>
-                                <action selector="shareButton:" destination="BYZ-38-t0r" id="5Zc-U9-g0Y"/>
+                                <action selector="shareButton:" destination="BYZ-38-t0r" id="0la-WD-Ei4"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="5wU-Mm-Hlb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="ILq-BI-BiP">
                             <connections>
-                                <action selector="cancelButton:" destination="BYZ-38-t0r" id="xPf-K2-McO"/>
+                                <action selector="cancelButton:" destination="BYZ-38-t0r" id="sr7-hV-Ym2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -88,35 +80,38 @@
                         <outlet property="albumButton" destination="Mt7-Rd-Pq4" id="Lb7-us-3Fr"/>
                         <outlet property="bottomText" destination="mxX-LT-eQg" id="cC1-eq-iCg"/>
                         <outlet property="cameraButton" destination="c4q-ms-Hsw" id="aci-7H-oS1"/>
-                        <outlet property="cancelButton" destination="5wU-Mm-Hlb" id="jlB-sP-9f3"/>
+                        <outlet property="cancelButton" destination="ILq-BI-BiP" id="TCg-xG-ijE"/>
                         <outlet property="imagePickerView" destination="Sf4-1z-mXD" id="qCS-MY-VWA"/>
-                        <outlet property="navBar" destination="UZY-2Z-5vW" id="LMR-TB-6xc"/>
-                        <outlet property="shareButton" destination="bhk-zn-IMq" id="x9C-5b-AMe"/>
+                        <outlet property="shareButton" destination="aNd-by-Kq8" id="J3q-VF-gTE"/>
                         <outlet property="toolBar" destination="6xz-hd-WA0" id="34o-ii-0Qu"/>
                         <outlet property="topText" destination="lpD-x9-k0U" id="1L1-nH-Sh6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1021" y="131"/>
+            <point key="canvasLocation" x="1833" y="131"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="coO-Oq-yYd">
+        <scene sceneID="zPr-Pr-rtq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="B3H-rg-qam" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="afQ-ko-Uls" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XT1-iY-A40">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jh8-Qd-pr3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="PXN-UA-tOX">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="51i-bW-Fha"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="poP-5I-F3n"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lCR-IX-nNs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="evd-rQ-Uh6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="175" y="887"/>
+            <point key="canvasLocation" x="1021" y="131"/>
         </scene>
     </scenes>
 </document>
